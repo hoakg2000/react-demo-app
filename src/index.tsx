@@ -3,13 +3,23 @@ import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+import myStore from './redux/mystore';
+import { Provider } from 'react-redux';
+import { AuthProvider } from './context/authcontext';
+import ErrorBoundary from './config/errorboundary';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
 );
 root.render(
   <React.StrictMode>
-    <App />
+    <ErrorBoundary>
+      <Provider store={myStore}>
+        <AuthProvider>
+          <App />
+        </AuthProvider>
+      </Provider>
+    </ErrorBoundary>
   </React.StrictMode>
 );
 
